@@ -4,22 +4,76 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>heath.dog</title>
+  <meta name="description" content="Tools for OOTP Perfect Team: rosters, cards, tournaments and drafts.">
   <style>
-    :root { --bg: #fbfaf7; --ink: #1d1d1b; --muted: #6b6a66; --accent: #b4532a; }
-    @media (prefers-color-scheme: dark) { :root { --bg: #161615; --ink: #ecebe6; --muted: #a3a29c; --accent: #e08a5c; } }
+    :root { --bg: #fbfaf7; --ink: #1d1d1b; --muted: #6b6a66; --line: #e4e1d9; --accent: #b4532a; --chip: #f1ece2; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #161615; --ink: #ecebe6; --muted: #a3a29c; --line: #2c2b29; --accent: #e08a5c; --chip: #23221f; } }
+    * { box-sizing: border-box; }
     html, body { margin: 0; background: var(--bg); color: var(--ink); }
-    body { font: 18px/1.6 Georgia, "Times New Roman", serif; display: grid; place-items: center; min-height: 100vh; padding: 0 16px; }
-    main { max-width: 34rem; }
-    h1 { font-size: 3rem; margin: 0 0 .25rem; letter-spacing: -0.02em; }
-    p { margin: .5rem 0; color: var(--muted); }
+    body { font: 17px/1.6 Georgia, "Times New Roman", serif; padding: 56px 16px 72px; }
+    main { max-width: 46rem; margin: 0 auto; }
+    h1 { font-size: 3rem; margin: 0; letter-spacing: -0.02em; }
+    .lede { color: var(--muted); margin: .4rem 0 2.5rem; font-size: 1.1rem; }
+    h2 { font: 600 .8rem/1 system-ui, -apple-system, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 2.4rem 0 .6rem; }
+    ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    li { display: grid; grid-template-columns: 11rem 1fr auto; gap: .25rem 1rem; padding: .7rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+    .name { font-weight: bold; }
+    .what { color: var(--muted); }
+    .tag { font: 500 .72rem/1 system-ui, -apple-system, sans-serif; background: var(--chip); color: var(--muted); padding: .3rem .5rem; border-radius: 99px; white-space: nowrap; }
+    .tag.new { color: var(--accent); }
+    footer { margin-top: 3rem; color: var(--muted); font-size: .95rem; }
     a { color: var(--accent); }
+    @media (max-width: 560px) { li { grid-template-columns: 1fr auto; } .what { grid-column: 1 / -1; } }
   </style>
 </head>
 <body>
   <main>
     <h1>heath.dog</h1>
-    <p>Something is being built here. Check back soon.</p>
-    <p><a href="https://github.com/Heathd0g">github.com/Heathd0g</a></p>
+    <p class="lede">Tools I'm building for OOTP Perfect Team: measuring how the game turns ratings into results, and using that to build better rosters.</p>
+
+    <h2>The hub</h2>
+    <ul>
+      <li><span class="name">Ellis-Day HUD</span><span class="what">One page that links every tool below, with tournament rankings and matchups.</span><span class="tag">in use</span></li>
+    </ul>
+
+    <h2>Rosters</h2>
+    <ul>
+      <li><span class="name">Roster builder</span><span class="what">Picks the best 26 for a tournament, lineups against each hand, rotation and pen, all at once.</span><span class="tag">in use</span></li>
+      <li><span class="name">Roster Board</span><span class="what">Pick your own 26, card by card, from the builder's base.</span><span class="tag">in use</span></li>
+      <li><span class="name">Platoon Finder</span><span class="what">Platoon partners from your own cards, spot by spot.</span><span class="tag">in use</span></li>
+      <li><span class="name">Rebuild Changes</span><span class="what">What a rebuild would change against the rosters in the game, spot by spot.</span><span class="tag">in use</span></li>
+      <li><span class="name">Slot Guide</span><span class="what">Which saved roster goes in which tournament slot.</span><span class="tag">in use</span></li>
+    </ul>
+
+    <h2>Cards</h2>
+    <ul>
+      <li><span class="name">Card Lookup</span><span class="what">Any card: grades by tournament and era, and where he plays.</span><span class="tag">in use</span></li>
+      <li><span class="name">Collection Health</span><span class="what">Idle cards in the collection and what they are worth.</span><span class="tag">in use</span></li>
+      <li><span class="name">Pack Ripper</span><span class="what">Simulated pack openings, every pull priced, against what the pack costs.</span><span class="tag">in use</span></li>
+    </ul>
+
+    <h2>Tournaments</h2>
+    <ul>
+      <li><span class="name">Event Reports</span><span class="what">A report for every tournament run: results, who hit, who pitched.</span><span class="tag">in use</span></li>
+      <li><span class="name">Results Ledger</span><span class="what">Every run and how it finished.</span><span class="tag">in use</span></li>
+      <li><span class="name">Run Diary</span><span class="what">Each run with the notes on what went right and wrong.</span><span class="tag">in use</span></li>
+      <li><span class="name">Matchup Scout</span><span class="what">Opponents' repeat weak spots.</span><span class="tag">in use</span></li>
+      <li><span class="name">Field Book</span><span class="what">What the field plays in each tournament.</span><span class="tag">in use</span></li>
+      <li><span class="name">Park Book</span><span class="what">Each park and who it favors.</span><span class="tag">in use</span></li>
+      <li><span class="name">Qualifying tracker</span><span class="what">Championship points and where to enter next.</span><span class="tag">in use</span></li>
+    </ul>
+
+    <h2>Drafts</h2>
+    <ul>
+      <li><span class="name">Draft HUD</span><span class="what">A Mac overlay beside the draft screen: era grades and the best available pick.</span><span class="tag">in use</span></li>
+    </ul>
+
+    <h2>In the works</h2>
+    <ul>
+      <li><span class="name">Tournament simulator</span><span class="what">Plays whole tournaments game by game to find bracket odds and test roster choices. The plate-appearance model is built; the game engine is next.</span><span class="tag new">building</span></li>
+    </ul>
+
+    <footer>The tools are private for now. Some may be shared with other players down the road.<br><a href="https://github.com/Heathd0g">github.com/Heathd0g</a></footer>
   </main>
 </body>
 </html>
