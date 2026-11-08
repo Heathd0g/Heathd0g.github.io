@@ -1,0 +1,6 @@
+title: heath.dog
+description: OOTP Perfect Team tools, and some personal things.
+url: https://heath.dog
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+exclude: [README.md, .DS_Store]

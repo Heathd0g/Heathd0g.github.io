@@ -1,0 +1,17 @@
+---
+layout: default
+title: Blog
+section: blog
+---
+<p class="kicker">Personal</p>
+<h1>Blog<span class="dot">.</span></h1>
+{% if site.posts.size > 0 %}
+<ul class="posts">
+  {% for post in site.posts %}
+  <li><p class="post-date">{{ post.date | date: "%B %-d, %Y" }}</p><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="lede">Writing, now and then.</p>
+<div class="soon">Coming soon<small>First posts are on deck.</small></div>
+{% endif %}
