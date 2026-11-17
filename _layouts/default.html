@@ -5,17 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} · {% endif %}heath.dog</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
+  {%- assign url5 = page.url | slice: 0, 6 -%}
+  {%- if url5 == '/ootp/' -%}{%- assign sec = 'ootp' -%}
+  {%- elsif url5 == '/blog/' -%}{%- assign sec = 'blog' -%}
+  {%- elsif page.url contains '/portfolio/' -%}{%- assign sec = 'portfolio' -%}
+  {%- else -%}{%- assign sec = page.section -%}{%- endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {%- if sec == 'ootp' %}
+  <!-- OOTP section: ballpark theme -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
+  {%- else %}
+  <!-- everything else: magazine theme -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Playfair+Display:ital,wght@0,500;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/magazine.css">
+  {%- endif %}
 </head>
 <body>
   <nav class="top">
     <a class="home" href="/">heath<span>.</span>dog</a>
-    <a href="/ootp/"{% if page.section == 'ootp' %} class="on"{% endif %}>OOTP</a>
-    <a href="/blog/"{% if page.section == 'blog' %} class="on"{% endif %}>Blog</a>
-    <a href="/portfolio/"{% if page.section == 'portfolio' %} class="on"{% endif %}>Portfolio</a>
+    <a href="/ootp/"{% if sec == 'ootp' %} class="on"{% endif %}>OOTP</a>
+    <a href="/blog/"{% if sec == 'blog' %} class="on"{% endif %}>Blog</a>
+    <a href="/portfolio/"{% if sec == 'portfolio' %} class="on"{% endif %}>Portfolio</a>
   </nav>
   <main>
 {{ content }}

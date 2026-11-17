@@ -6,7 +6,7 @@ The site at https://heath.dog (GitHub Pages builds it with Jekyll on every push)
 - `/ootp/` the Perfect Team tools page (`ootp/index.html`)
 - `/blog/` lists every post in `_posts/`; shows "coming soon" while there are none
 - `/portfolio/` coming soon (`portfolio/index.html`)
-- Look: `assets/style.css` (ballpark theme; light = scorecard, dark = night game), layout in `_layouts/`
+- Look: the OOTP section (`/ootp/`) uses `assets/style.css` (ballpark theme; light = scorecard, dark = night game); everything else uses `assets/magazine.css` (Magazine: Playfair headlines, cobalt accent). `_layouts/default.html` picks by the page address.
 
 ## Writing a blog post
 

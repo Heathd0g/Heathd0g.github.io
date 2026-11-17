@@ -1,0 +1,77 @@
+/* heath.dog: Magazine theme for everything outside /ootp/ (home, blog, portfolio).
+   Crisp paper, big headline serif, heavy rule, one cobalt accent. The OOTP section keeps assets/style.css (ballpark). */
+:root {
+  --bg: #ffffff; --ink: #111111; --muted: #5a5a5a; --line: #dddddd; --rule: #111111;
+  --accent: #2f4bd8; --chip: #f3f3f1; --card: #ffffff;
+  --display: "Playfair Display", Georgia, serif;
+  --body: "Source Serif 4", Georgia, serif;
+  --ui: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f0f10; --ink: #f2f2f0; --muted: #a3a3a3; --line: #2c2c2e; --rule: #f2f2f0;
+          --accent: #8ea0ff; --chip: #1a1a1c; --card: #141416; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font: 19px/1.7 var(--body); padding: 0 16px 80px; -webkit-font-smoothing: antialiased; }
+main, .top { max-width: 46rem; margin: 0 auto; }
+
+/* masthead: name left, sections right, heavy rule under */
+.top { display: flex; gap: 1.5rem; align-items: baseline; flex-wrap: wrap; padding: 1.4rem 0 .7rem; margin-bottom: 3rem;
+       border-bottom: 3px solid var(--rule); font: 500 .74rem/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; }
+.top .home { font: 500 1.6rem/1 var(--display); letter-spacing: 0; text-transform: none; color: var(--ink); text-decoration: none; margin-right: auto; }
+.top .home span { color: var(--accent); }
+.top a { color: var(--muted); text-decoration: none; }
+.top a:hover, .top a.on { color: var(--accent); }
+
+/* headlines */
+h1 { font: 500 clamp(2.8rem, 10vw, 5rem)/1 var(--display); letter-spacing: -.01em; margin: 0; }
+h1 .dot { color: var(--accent); }
+h2 { font: 500 1.75rem/1.15 var(--display); margin: 3rem 0 1rem; padding-top: .9rem; border-top: 1px solid var(--rule); }
+.kicker { font: 500 .74rem/1 var(--ui); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 1rem; }
+.lede { color: var(--muted); margin: 1.1rem 0 2.6rem; font-size: 1.2rem; max-width: 36rem; }
+a { color: var(--accent); text-underline-offset: 3px; }
+
+/* section cards: plain ruled blocks */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); gap: 0 2rem; }
+.card { display: block; padding: 1.1rem 0 1.3rem; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+.card .name { display: block; font: 500 1.6rem/1.15 var(--display); margin-bottom: .4rem; }
+.card:hover .name { color: var(--accent); }
+.card .what { display: block; color: var(--muted); font-size: 1rem; margin-bottom: .7rem; }
+.card .seat { font: 500 .68rem/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+
+/* tool lists (if a personal page ever uses one) */
+ul.list { list-style: none; margin: 0; padding: 0; }
+ul.list li { display: grid; grid-template-columns: 11rem 1fr auto; gap: .25rem 1rem; padding: .8rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.name { font-weight: 600; }
+.what { color: var(--muted); }
+.tag { font: 500 .66rem/1 var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: .35rem .55rem; white-space: nowrap; }
+
+/* coming soon */
+.soon { font: 500 .8rem/1.6 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+        border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 1.2rem 0; }
+.soon small { display: block; color: var(--muted); text-transform: none; letter-spacing: 0; font: italic 1.05rem/1.6 var(--body); margin-top: .3rem; }
+
+/* blog list */
+.posts { list-style: none; padding: 0; margin: 2.2rem 0 0; border-top: 3px solid var(--rule); }
+.posts li { padding: 1.1rem 0 1.2rem; border-bottom: 1px solid var(--line); }
+.posts a { font: 500 1.7rem/1.15 var(--display); color: var(--ink); text-decoration: none; }
+.posts a:hover { color: var(--accent); }
+.post-date { color: var(--accent); font: 500 .72rem/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 .6rem; }
+
+/* a post */
+article { margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+article > p:first-child::first-letter { font: 500 3.6em/.8 var(--display); float: left; margin: .1em .1em 0 0; color: var(--ink); }
+article h2 { font-size: 1.5rem; }
+article h3 { font: 500 1.25rem/1.25 var(--display); margin: 2rem 0 .6rem; }
+article img { max-width: 100%; height: auto; }
+article pre, article code { font-family: var(--mono); font-size: .82em; }
+article code { background: var(--chip); padding: .1em .3em; }
+article pre { background: var(--chip); padding: .9rem 1rem; overflow-x: auto; }
+article pre code { background: none; padding: 0; }
+article blockquote { margin: 1.6rem 0; padding: 0 0 0 1.2rem; border-left: 3px solid var(--accent); font: italic 1.25rem/1.5 var(--display); color: var(--ink); }
+article hr { border: 0; border-top: 1px solid var(--line); margin: 2.4rem 0; }
+
+footer { margin-top: 3.4rem; padding-top: 1rem; border-top: 3px solid var(--rule); color: var(--muted); font: .9rem/1.6 var(--ui); }
+@media (max-width: 560px) { ul.list li { grid-template-columns: 1fr auto; } ul.list .what { grid-column: 1 / -1; } .top { gap: 1rem; } }
