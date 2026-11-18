@@ -42,6 +42,9 @@ body { background: var(--paper); color: var(--ink); font-family: var(--f-body); 
 
 .front { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 0 32px; margin-top: 20px; }
 @media (max-width: 820px) { .front { grid-template-columns: minmax(0, 1fr); } }
+.front.solo { grid-template-columns: minmax(0, 1fr); }
+.front.solo .rail { display: none; }
+@media (min-width: 961px) { .front.solo .story { column-count: 3; } }
 .kicker { font-family: var(--f-head); color: var(--red); text-transform: uppercase; letter-spacing: .16em; font-size: 13px; }
 .headline { font-family: var(--f-head); font-weight: 700; text-transform: uppercase; font-size: clamp(30px, 5.4vw, 60px); line-height: 1.02; margin: 4px 0 10px; text-wrap: balance; }
 .dek { font-style: italic; font-size: 19px; color: var(--ink-soft); margin: 0 0 12px; text-wrap: balance; }
@@ -145,15 +148,15 @@ function render(id) {
   });
   main.appendChild(story); front.appendChild(main);
 
-  var rail = el('aside', 'rail'), under = el('aside', 'under');
+  var rail = el('aside', 'rail'), under = el('aside', 'under'), sides = [];
   iss.sidebars.forEach(function (s, n) {
     var b = el('section', 'side'); b.appendChild(el('h3', '', s.title)); b.appendChild(el('div', 'by', s.byline));
     (s.paras || []).forEach(function (t) { b.appendChild(el('p', '', t)); });
     if (s.list) { var u = el('ul'); s.list.forEach(function (t) { u.appendChild(el('li', '', t)); }); b.appendChild(u); }
-    (n < 2 ? rail : under).appendChild(b);   // two beside the story, the rest under it
+    sides.push(b); under.appendChild(b);
   });
-  front.appendChild(rail); P.appendChild(front);
-  if (iss.sidebars.length > 2) P.appendChild(under);
+  front.appendChild(rail); P.appendChild(front); P.appendChild(under);
+  FIT = { front: front, story: story, rail: rail, under: under, sides: sides };
 
   if (iss.standings && iss.standings.length) {
     var sh = el('div', 'section-h'); sh.appendChild(el('span', '', 'Standings')); sh.appendChild(el('small', '', iss.standings_note)); P.appendChild(sh);
@@ -176,7 +179,29 @@ function render(id) {
     ['ERA+', function (r) { return r.erap; }, '', function (r) { return r.erap >= 130 && parseFloat(r.ip) >= 10; }], ['FIP', function (r) { return r.fip; }],
     ['K/9', function (r) { return r.k9; }]], iss.pitchers));
   P.appendChild(boxes);
+  fit();
 }
+
+// HG 11/18 ("still a lot of awkward blank space"): the rail takes as many sidebars as fit beside the story, measured on the page,
+// and the rest run in columns under it. If not even the shortest fits, the story runs the full width and every sidebar goes under.
+var FIT = null, fitT = null;
+function fit() {
+  if (!FIT) return;
+  var f = FIT, used = [];
+  f.sides.forEach(function (b) { f.under.appendChild(b); });
+  f.front.classList.remove('solo');
+  if (window.matchMedia('(max-width: 820px)').matches) { f.front.classList.add('solo'); f.under.style.display = f.sides.length ? '' : 'none'; return; }
+  var top = f.front.getBoundingClientRect().top, H = f.story.getBoundingClientRect().bottom - top;
+  f.sides.forEach(function (b) {
+    f.rail.appendChild(b);
+    if (b.getBoundingClientRect().bottom - top > H + 14) f.under.appendChild(b); else used.push(b);
+  });
+  f.sides.forEach(function (b) { if (used.indexOf(b) < 0) f.under.appendChild(b); });   // back in their own order
+  if (!used.length) f.front.classList.add('solo');
+  f.under.style.display = f.under.children.length ? '' : 'none';
+}
+window.addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fit, 120); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 
 function boot() {
   fetch('data/gazette.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
