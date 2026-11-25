@@ -10,3 +10,5 @@ Honestly I cannot figure out how to put those pieces back together. Imagine this
 sorry that was a lot.
 
 But it's proof. I am kind of stuck between all these different phases. And it's weird. The OOTP project has been a good thing, a distraction, and fun. there's a lot of tools I don't expose at the moment only because they arent finished, I have a card lookup with player bio summaries amongst the tournaments that player deserves a look for, and some other things. I've even got my own server and i'm doing stuff with it, it's kinda fun. It's pointless, but I just kind of want to show myself that I can still do this stuff if it's not associated with the high-stress elements of work. because again that shit broke my head.
+
+Oh yeah, and then I fucking got cancer!! Which is terrifying!! but so far I THINK im ok? im not sure, every day I think im getting it again.
